@@ -482,7 +482,7 @@
     <!-- 第五个轮播图结束 -->
         </div>
     <!-- MV标题结束 -->
-  
+        <card-list :list="card" length="4"></card-list>
     </div>
 </template>
 <script>
@@ -491,8 +491,10 @@ import Indexfun from '../components/Indexfun'
 import Lunbo from '../components/Lunbo'
 import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import  cardList from "@/components/card-list"
 export default {
     components: {
+    cardList,
     swiper,
     swiperSlide,
     Handex,
@@ -500,6 +502,28 @@ export default {
   },
   data(){
       return{
+        card:[
+          {
+            title:"哈哈哈",
+            text:"这是文本"
+          },
+          {
+            title:"哈哈哈",
+            text:"这是文本"
+          },
+          {
+            title:"哈哈哈",
+            text:"这是文本"
+          },
+          {
+            title:"哈哈哈",
+            text:"这是文本"
+          },
+          {
+            title:"哈哈哈",
+            text:"这是文本"
+          },
+        ],
         lunbo:true,
         yi:0,
           swiperOption:{
@@ -767,6 +791,7 @@ export default {
       }
   },
   mounted() {
+      // this.card=this.card.splice(0,3)
       var ul=document.querySelectorAll(".Hae_der_ul>li");
         for(let i=0;i<ul.length;i++){
             ul[i].removeAttribute("class")
