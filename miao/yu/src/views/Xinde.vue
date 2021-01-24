@@ -84,7 +84,7 @@
              </div>
              <div class="my-pl">
                <div>
-                 <input type="text" placeholder="期待你的神评论……">
+                 <input type="text" v-model="task" placeholder="期待你的神评论……">
                </div>
                <div class="my-ply">
                  剩余
@@ -96,13 +96,14 @@
                    <a href="">
                    <i class="miao-i"></i>
                    </a>
-                   <a href="javascript:;" class="miao-a">发表评论</a>
+                   <a href="javascript:;" class="miao-a" @click="add">发表评论</a>
              </div>
             <div>
               <h4>最新评论(249605)</h4>
             </div>
-             <div>
-               <ul class="miao-ul">
+             <div class="MOdel_top">
+               <!-- 写死的评论 -->
+               <!-- <ul class="miao-ul">
                  <li v-for="(p,i) of pl" :key="i" class="miao-li">
                    <div class="miao-img">
                      <img v-lazy="require(`../assets/Xindeimg/${p.img}`)" alt="">
@@ -113,7 +114,10 @@
                      <p>{{p.shiji}}<span></span></p>
                      </div>
                  </li>
-               </ul>
+               </ul> -->
+           <ul class="miao-ul">
+               <li  class="miao-li" v-for="(item,index) in tasks" :key="index">{{item}}</li>
+           </ul>
              </div>
          </div>
        </div>
@@ -126,6 +130,7 @@ export default {
   },
   data(){
     return{
+      task:"",
       str:['飙升榜','热歌榜','新歌榜','流行指数榜','听歌识曲榜','MV榜'],
       strs:['内地榜','香港地区榜','台湾地区榜','日本榜','韩国榜'],
       strss:['特色榜','网络歌曲榜','DJ舞曲榜','Q音快手榜','抖音排行榜','综艺新歌榜','影视金曲榜','国风热歌榜','说唱榜','电音榜','动漫音乐榜','游戏音乐榜','达人音乐榜','K歌金曲榜','腾讯音乐人原创榜'],
@@ -325,6 +330,17 @@ export default {
        shiji:"12月30日 8:23"
         },
       ],
+      tasks:["你是","他是","我是"]
+    }
+  },
+  methods:{
+    add(){
+       if(this.task.trim()!==""){
+        //当前循环 推送  当前文本框没有前后空格
+        this.tasks.push(this.task.trim());
+        //每次添加完，都要清除文本框中遗留的记录
+        this.task="";
+      }
     }
   }
   
@@ -693,4 +709,5 @@ h2{
   margin: 5px 0;
   color: #333;
 }
+
 </style>
